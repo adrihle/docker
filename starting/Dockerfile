@@ -23,11 +23,11 @@
 FROM debian
 COPY init.sh /
 RUN apt-get update && apt-get install -y git curl binutils clang make
-RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
-&& mkdir ~/.linuxbrew/bin \
-&& ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin \
-&& eval $(~/.linuxbrew/bin/brew shellenv) \
-&& brew --version
+# RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
+# && mkdir ~/.linuxbrew/bin \
+# && ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin \
+# && eval $(~/.linuxbrew/bin/brew shellenv) \
+# && brew --version
 ENV PATH=~/.linuxbrew/bin:~/.linuxbrew/sbin:$PATH
 
 RUN ["chmod", "+x", "/init.sh"]
