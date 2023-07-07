@@ -1,0 +1,7 @@
+version: "1"
+services:
+  init:
+    image: roccostart:latest
+    volumes: 
+      - /Users/adrian/code/docker/starting/init.sh:/init.sh
+
