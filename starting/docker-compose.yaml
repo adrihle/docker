@@ -3,5 +3,5 @@ services:
   init:
     image: roccostart:latest
     volumes: 
-      - /Users/adrian/code/docker/starting/init.sh:/init.sh
+      - /Users/adrian/code/docker/starting/src:/src
 
