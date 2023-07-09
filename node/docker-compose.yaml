@@ -3,6 +3,8 @@ services:
   client:
     image: client
     restart: always
+    environment:
+      - API_URL=http://api:4000
     ports:
       - "3000:3000"
     working_dir: /client
