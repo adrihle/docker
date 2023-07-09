@@ -1,0 +1,51 @@
+version: "1"
+services:
+  client:
+    image: client
+    restart: always
+    ports:
+      - "3000:3000"
+    working_dir: /client
+    volumes:
+      - ./client:/client
+    entrypoint: ["npm", "run", "dev"]
+    links:
+      - api
+    networks:
+      - nodeapp
+  
+  api:
+    image: api
+    restart: always
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/test
+    ports:
+      - "4000:4000"
+    working_dir: /api
+    volumes:
+      - ./api:/api
+    entrypoint: ["npm", "run", "start:dev"]
+    depends_on:
+      - mongodb
+    networks:
+      - nodeapp
+
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --noauth
+    networks:
+      - nodeapp
+
+volumes:
+  data:
+
+networks:
+  nodeapp:
+    driver: bridge
+
