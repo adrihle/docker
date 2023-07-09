@@ -1,7 +1,5 @@
 #!/bin/bash
 
-LOG_TAG="${BLUE}[HOMEBREW]${NC}"
-SUCCESS_LOG_TAG="${GREEN}[HOMEBREW]${NC}"
 
 function install_brew () {
   if command -v brew >/dev/null; then
@@ -39,6 +37,8 @@ function install_brew_packages () {
 }
 
 function init_homebrew () {
+  local LOG_TAG="${BLUE}[HOMEBREW]${NC}"
+  local SUCCESS_LOG_TAG="${GREEN}[HOMEBREW]${NC}"
   echo "$LOG_TAG ${BOLD}Installing${NC}"
   install_brew
   install_brew_packages
