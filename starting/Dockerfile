@@ -1,6 +1,6 @@
-FROM ubuntu
+FROM alpine:latest
+WORKDIR /root
 COPY src /src
-RUN apt-get update && apt-get install -y git curl binutils clang make ruby
-ENV PATH=~/.linuxbrew/bin:~/.linuxbrew/sbin:$PATH
+RUN apk add git nodejs neovim ripgrep build-base --update
 
 RUN ["chmod", "+x", "/src/init.sh"]
