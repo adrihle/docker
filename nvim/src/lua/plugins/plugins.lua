@@ -34,5 +34,29 @@ return {
     dependencies = "nvim-telescope/telescope.nvim",
     config = function() require('plugins.mapper') end
   },
+
+  -- Tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = {
+      "NvimTreeOpen",
+      "NvimTreeClose",
+      "NvimTreeToggle",
+      "NvimTreeFindFile",
+      "NvimTreeFindFileToggle",
+    },
+    keys = {
+      { "<C-e>", "<cmd>lua require('nvim-tree.api').tree.toggle()<CR>", desc = "NvimTree" },
+    },
+    config = function()
+      require("plugins.tree")
+    end,
+  },
+
+  -- Lualine
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons', opt = false },
+  },
 }
 
