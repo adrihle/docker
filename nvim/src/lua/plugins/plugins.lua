@@ -22,6 +22,17 @@ return {
     "nvim-telescope/telescope.nvim", tag = "0.1.2",
     lazy = false,
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('plugins.telescope') end,
-  }
+    config = function()
+      require('plugins.telescope')
+    end,
+  },
+
+  -- Mapper
+  {
+    "gregorias/nvim-mapper",
+    lazy = false,
+    dependencies = "nvim-telescope/telescope.nvim",
+    config = function() require('plugins.mapper') end
+  },
 }
+

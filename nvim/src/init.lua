@@ -1,5 +1,6 @@
-require('config.remap')
 require('config.roccocode')
+require('config.remap')
 require('config.lazy')
 
-require('plugins')
+require('utils.remap')
+

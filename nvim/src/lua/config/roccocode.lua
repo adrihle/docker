@@ -54,4 +54,15 @@ Roccocode = {
 	lsp = {
 		virtual_text = true, -- show virtual text (errors, warnings, info) inline messages
 	},
+  constants = {
+    MAPPING = {
+      MODE = {
+        NORMAL = { 'n' },
+        INSERTION = { 'i' },
+        VISUAL_X = { 'x' },
+        VISUAL = { 'v' }
+      },
+      OPTIONS = { silent = true, noremap = true }
+    },
+  },
 }
