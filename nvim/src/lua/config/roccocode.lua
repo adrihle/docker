@@ -9,8 +9,14 @@
 local icons = require("utils.icons")
 
 Roccocode = {
+  _VERSION = "beta",
+  theme = "tokyonight",
 	colorscheme = "tokyonight",
 	ui = {
+    colors = {
+      primary = "#488dff",
+      secondary = "#FFA630",
+    },
 		float = {
 			border = "rounded",
 		},
@@ -64,5 +70,5 @@ Roccocode = {
       },
       OPTIONS = { silent = true, noremap = true }
     },
-  },
+  }
 }

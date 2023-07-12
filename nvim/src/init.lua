@@ -1,3 +1,4 @@
+require('config.config')
 require('config.roccocode')
 require('config.remap')
 require('config.lazy')

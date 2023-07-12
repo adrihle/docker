@@ -5,8 +5,8 @@ end
 
 local c = require("tokyonight.colors").setup()
 
-local MAIN_COLOR = "#488dff"
-local SECONDARY_COLOR = "#FFA630"
+local MAIN_COLOR = Roccocode.ui.colors.primary
+local SECONDARY_COLOR = Roccocode.ui.colors.secondary
 local NONE = "None"
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -127,3 +127,4 @@ if Roccocode.colorscheme == "tokyonight" then
     vim.api.nvim_set_hl(0, group, hl)
   end
 end
+

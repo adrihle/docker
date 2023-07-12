@@ -28,7 +28,7 @@ require("lazy").setup("plugins.plugins", {
     },
   },
   debug = false,
-  -- ui = {
-  --   border = Roccocode.ui.float.border,
-  -- }
+   ui = {
+     border = Roccocode.ui.float.border,
+   }
 })

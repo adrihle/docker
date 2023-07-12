@@ -7,7 +7,7 @@ return {
     config = function()
       -- load the colorscheme here
       vim.cmd([[colorscheme tokyonight]])
-      require("config.colorscheme")
+      require("plugins.theme")
     end,
   },
   { "nvim-lua/plenary.nvim" },
@@ -17,6 +17,16 @@ return {
       require("nvim-web-devicons").setup({ default = true })
     end,
   },
+
+  -- Alpha
+    {
+    "goolord/alpha-nvim",
+    lazy = false,
+    config = function()
+      require("plugins.alpha")
+    end,
+  },
+
   -- Telescope
   {
     "nvim-telescope/telescope.nvim", tag = "0.1.2",
