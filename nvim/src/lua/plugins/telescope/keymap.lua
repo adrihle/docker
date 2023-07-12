@@ -23,6 +23,14 @@ Map({
 })
 
 Map({
+  keybind = '<leader>fs',
+  command = builtin.live_grep,
+  category = CATEGORY,
+  id = getid('grep-string'),
+  description = 'Grep string through commited files'
+})
+
+Map({
   keybind = '<leader>fb',
   command = builtin.buffers,
   category = CATEGORY,
