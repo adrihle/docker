@@ -20,8 +20,8 @@ telescope.setup {
       width = 0.75,
       prompt_position = "bottom",
       preview_cutoff = 120,
-      horizontal = {mirror = false},
-      vertical = {mirror = false}
+      horizontal = { mirror = false },
+      vertical = { mirror = false }
     },
     find_command = {
       'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
@@ -39,10 +39,10 @@ telescope.setup {
     path_display = {},
     winblend = 0,
     border = {},
-    borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
     use_less = true,
-    set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = previewers.vim_buffer_cat.new,
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
@@ -59,8 +59,14 @@ telescope.setup {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
-      }
-    }
-  }
+      },
+    },
+  },
+  extensions = {
+    fzf = {
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = 'smart_case',
+    },
+  },
 }
-
