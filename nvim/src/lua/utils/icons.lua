@@ -60,7 +60,7 @@ local icons = {
   func                = "  ",
   gear                = "  ",
   gears               = "  ",
-  git                 = "  ",
+  gitIcon             = "  ",
   gitAdd              = "  ",
   gitChange           = " 柳",
   gitRemove           = "  ",
@@ -136,6 +136,15 @@ local icons = {
   warningTriangleNoBg = "  ",
   watch               = "  ",
   wrench              = "  ",
+  git                 = {
+    unstaged = "",
+    staged = "",
+    unmerged = "",
+    renamed = "➜",
+    untracked = "",
+    deleted = "",
+    ignored = "◌",
+  },
 }
 
 return icons

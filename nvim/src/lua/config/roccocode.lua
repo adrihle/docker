@@ -51,6 +51,9 @@ Roccocode = {
 			kitty_enabled = true,
 			enabled = true, -- sync after change
 		},
+    tree = {
+      width = 40,
+    },
 	},
 	icons = icons,
 	statusline = {

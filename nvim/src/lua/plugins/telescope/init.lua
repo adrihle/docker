@@ -1,72 +1,124 @@
-local telescope_setup, telescope = pcall(require, "telescope")
-if not telescope_setup then
-  return
+local NAME = 'nvim-telescope/telescope.nvim'
+
+local DEPENDENCIES = { "nvim-lua/plenary.nvim" }
+
+local CONFIG = function()
+  local telescope_setup, telescope = pcall(require, "telescope")
+  if not telescope_setup then
+    return
+  end
+
+  local actions_setup, actions = pcall(require, "telescope.actions")
+  if not actions_setup then
+    return
+  end
+
+  local previewers = require("telescope.previewers")
+  local sorters = require("telescope.sorters")
+
+  telescope.load_extension('mapper')
+  telescope.load_extension('fzf')
+
+  telescope.setup {
+    defaults = {
+      layout_config = {
+        width = 0.75,
+        prompt_position = "bottom",
+        preview_cutoff = 120,
+        horizontal = { mirror = false },
+        vertical = { mirror = false }
+      },
+      find_command = {
+        'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
+      },
+      prompt_prefix = " ",
+      selection_caret = " ",
+      entry_prefix = "  ",
+      initial_mode = "insert",
+      selection_strategy = "reset",
+      sorting_strategy = "descending",
+      layout_strategy = "horizontal",
+      file_sorter = sorters.get_fuzzy_file,
+      file_ignore_patterns = {},
+      generic_sorter = sorters.get_generic_fuzzy_sorter,
+      path_display = {},
+      winblend = 0,
+      border = {},
+      borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      color_devicons = true,
+      use_less = true,
+      set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+      file_previewer = previewers.vim_buffer_cat.new,
+      grep_previewer = previewers.vim_buffer_vimgrep.new,
+      qflist_previewer = previewers.vim_buffer_qflist.new,
+      buffer_previewer_maker = previewers.buffer_previewer_maker,
+      mappings = {
+        i = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+          ["<esc>"] = actions.close,
+          ["<CR>"] = actions.select_default + actions.center
+        },
+        n = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+        },
+      },
+    },
+    extensions = {
+      fzf = {
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = 'smart_case',
+      },
+    },
+  }
 end
 
-local actions_setup, actions = pcall(require, "telescope.actions")
-if not actions_setup then
-  return
-end
-
-local previewers = require("telescope.previewers")
-local sorters = require("telescope.sorters")
-
-telescope.load_extension('mapper')
-telescope.load_extension('fzf')
-
-telescope.setup {
-  defaults = {
-    layout_config = {
-      width = 0.75,
-      prompt_position = "bottom",
-      preview_cutoff = 120,
-      horizontal = { mirror = false },
-      vertical = { mirror = false }
-    },
-    find_command = {
-      'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
-    },
-    prompt_prefix = " ",
-    selection_caret = " ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    file_sorter = sorters.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter = sorters.get_generic_fuzzy_sorter,
-    path_display = {},
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = previewers.vim_buffer_cat.new,
-    grep_previewer = previewers.vim_buffer_vimgrep.new,
-    qflist_previewer = previewers.vim_buffer_qflist.new,
-    buffer_previewer_maker = previewers.buffer_previewer_maker,
-    mappings = {
-      i = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close,
-        ["<CR>"] = actions.select_default + actions.center
-      },
-      n = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
-      },
-    },
-  },
-  extensions = {
-    fzf = {
-      override_generic_sorter = true,
-      override_file_sorter = true,
-      case_mode = 'smart_case',
-    },
-  },
+local FZF_PLUGIN = {
+  'nvim-telescope/telescope-fzf-native.nvim',
+  build = "make",
 }
+
+local MAPPER_PLUGIN = require('plugins.telescope.mapper')
+
+local TELESCOPE_PLUGIN = {
+  NAME,
+  lazy = false,
+  dependencies = DEPENDENCIES,
+  config = CONFIG,
+}
+
+
+local function table_merge(...)
+  local tables_to_merge = { ... }
+  assert(#tables_to_merge > 1, "There should be at least two tables to merge them")
+
+  for k, t in ipairs(tables_to_merge) do
+    assert(type(t) == "table", string.format("Expected a table as function parameter %d", k))
+  end
+
+  local result = tables_to_merge[1]
+
+  for i = 2, #tables_to_merge do
+    local from = tables_to_merge[i]
+    for k, v in pairs(from) do
+      if type(k) == "number" then
+        table.insert(result, v)
+      elseif type(k) == "string" then
+        if type(v) == "table" then
+          result[k] = result[k] or {}
+          result[k] = table_merge(result[k], v)
+        else
+          result[k] = v
+        end
+      end
+    end
+  end
+
+  return result
+end
+
+return table_merge(FZF_PLUGIN, TELESCOPE_PLUGIN, MAPPER_PLUGIN)

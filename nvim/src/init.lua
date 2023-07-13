@@ -1,9 +1,7 @@
 require('config.config')
 require('config.roccocode')
-require('config.remap')
 require('config.lazy')
 
+require('config.keymapping')
+
 require('plugins.lualine')
-
-require('utils.remap')
-

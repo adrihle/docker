@@ -1,3 +1,5 @@
+local tables = require('utils.functions.tables')
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -11,7 +13,25 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins.plugins", {
+local MENU        = require('plugins.alpha')
+local TELESCOPE   = require('plugins.telescope')
+local THEME       = require('plugins.theme')
+local FILE_TREE   = require('plugins.tree')
+local STATUS_LINE = require('plugins.lualine')
+
+local BASIC       = {
+  { "nvim-lua/plenary.nvim" },
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup({ default = true })
+    end,
+  },
+}
+
+local PLUGINS     = tables.table_merge(BASIC, MENU, TELESCOPE, THEME, FILE_TREE, STATUS_LINE)
+
+require("lazy").setup({PLUGINS}, {
   defaults = { lazy = true },
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = true },
@@ -28,7 +48,7 @@ require("lazy").setup("plugins.plugins", {
     },
   },
   debug = false,
-   ui = {
-     border = Roccocode.ui.float.border,
-   }
+  ui = {
+    border = Roccocode.ui.float.border,
+  }
 })

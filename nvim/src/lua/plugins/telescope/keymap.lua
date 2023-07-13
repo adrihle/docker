@@ -45,3 +45,12 @@ Map({
   id = getid('find_help_tags'),
   description = 'Find help tags'
 })
+
+Map({
+  keybind = '<leader>fm',
+  command = "<CMD>:Telescope mapper<CR>",
+  category = CATEGORY,
+  id = getid('mapper'),
+  description = 'Find and grep keymaps'
+})
+
