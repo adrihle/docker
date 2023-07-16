@@ -1,10 +1,12 @@
+local MAPPER = require('utils.functions.mapping')
+
 local CATEGORY = 'Mapper'
 
 local function getid(id)
   return 'mapper-' .. id
 end
 
-Map({
+MAPPER.Map({
   keybind = '<leader>fm',
   command = "<CMD>:Telescope mapper<CR>",
   category = CATEGORY,

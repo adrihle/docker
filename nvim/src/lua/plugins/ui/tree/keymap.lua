@@ -1,8 +1,10 @@
+local MAPPER = require('utils.functions.mapping')
+
 local CATEGORY = 'Tree'
 local COMMAND_DEFAULT = ''
 
 local function TreeMapper(config)
-  VirtualMap({
+  MAPPER.VirtualMap({
     id = 'tree-' .. config.id,
     category = CATEGORY,
     command = COMMAND_DEFAULT,

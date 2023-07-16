@@ -10,7 +10,7 @@ local CONFIG = function()
   local icons = require("utils.icons")
   local if_nil = vim.F.if_nil
 
-  local header = require('plugins.alpha.header')
+  local header = require('plugins.ui.alpha.header')
 
   dashboard.section.header.type = "text";
   dashboard.section.header.val = header;

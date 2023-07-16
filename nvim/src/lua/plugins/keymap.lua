@@ -1,3 +1,2 @@
-require('plugins.mapper.keymap')
-require('plugins.telescope.keymap')
-require('plugins.tree.keymap')
+require('plugins.finder.keymap')
+require('plugins.ui.keymap')

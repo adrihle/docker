@@ -1,4 +1,4 @@
-local tables = require('utils.functions.tables')
+local TABLES = require('utils.functions.tables')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -14,26 +14,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local CORE        = require('plugins.core')
-local MENU        = require('plugins.alpha')
-local TELESCOPE   = require('plugins.telescope')
-local MAPPER      = require('plugins.mapper')
-local THEME       = require('plugins.theme')
-local FILE_TREE   = require('plugins.tree')
-local STATUS_LINE = require('plugins.lualine')
+local FINDER      = require('plugins.finder')
+local UI          = require('plugins.ui')
 
-local FINDER      = tables.table_merge(
-  MAPPER,
-  TELESCOPE
-)
-
-local UI          = tables.table_merge(
-  THEME,
-  MENU,
-  FILE_TREE,
-  STATUS_LINE
-)
-
-local PLUGINS     = tables.table_merge(
+local PLUGINS     = TABLES.table_merge(
   CORE,
   UI,
   FINDER

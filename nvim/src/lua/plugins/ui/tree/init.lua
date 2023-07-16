@@ -6,7 +6,7 @@ local TOGGLE_COMMAND = "<cmd>lua require('nvim-tree.api').tree.toggle()<CR>"
 
 local CONFIG = function()
   local icons     = require("utils.icons")
-  local on_attach = require("plugins.tree.on_attach")
+  local on_attach = require("plugins.ui.tree.on_attach")
   require("nvim-tree").setup({
     -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
     sync_root_with_cwd = true,

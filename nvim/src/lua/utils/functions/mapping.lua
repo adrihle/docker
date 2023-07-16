@@ -1,9 +1,11 @@
 local DEFAULT_CATEGORY = 'Undefined'
 local DEFAULT_DESCRIPTION = 'Pending to define'
 
+local MAPPER = {}
+
 local mapper_ready, Mapper = pcall(require, "nvim-mapper")
 if not mapper_ready then
-  return
+  return MAPPER
 end
 
 local function cloneTable(table)
@@ -31,16 +33,16 @@ local function injectMapConfig(mapper, config)
   )
 end
 
-function Map(config)
+MAPPER.Map = function(config)
   injectMapConfig(Mapper.map, config)
 end
 
-function BufferMap(config)
+MAPPER.BufferMap = function(config)
   injectMapConfig(Mapper.map_buf, config)
 end
 
-function VirtualMap(config)
+MAPPER.VirtualMap = function(config)
   injectMapConfig(Mapper.map_virtual, config)
 end
 
-
+return MAPPER;

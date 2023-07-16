@@ -1,10 +1,12 @@
+local MAPPER = require('utils.functions.mapping');
+
 local CATEGORY = 'Remap'
 
 local function getid(id)
   return 'remap-' .. id
 end
 
-Map({
+MAPPER.Map({
   keybind = '<C-h>',
   command = '<C-w>h',
   id = getid('left_move'),
@@ -12,7 +14,7 @@ Map({
   description = 'Move left between buffers in screen'
 })
 
-Map({
+MAPPER.Map({
   keybind = '<C-j>',
   command = '<C-w>j',
   id = getid('down-move'),
@@ -20,7 +22,7 @@ Map({
   description = 'Move down between buffers in screen'
 })
 
-Map({
+MAPPER.Map({
   keybind = '<C-k>',
   command = '<C-w>k',
   id = getid('up-move'),
@@ -28,7 +30,7 @@ Map({
   description = 'Move up between buffers in screen'
 })
 
-Map({
+MAPPER.Map({
   keybind = '<C-l>',
   command = '<C-w>l',
   id = getid('right-move'),

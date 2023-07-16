@@ -1,7 +1,4 @@
-require('config.config')
-require('config.roccocode')
+require('config')
 require('plugins')
+require('keybinds')
 
-require('config.keymapping')
-
-require('plugins.lualine')
