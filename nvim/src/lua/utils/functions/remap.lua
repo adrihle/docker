@@ -1,4 +1,3 @@
-
 local DEFAULT_CATEGORY = 'Undefined'
 local DEFAULT_DESCRIPTION = 'Pending to define'
 

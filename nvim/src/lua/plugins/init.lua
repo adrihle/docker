@@ -13,25 +13,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local CORE        = require('plugins.core')
 local MENU        = require('plugins.alpha')
 local TELESCOPE   = require('plugins.telescope')
 local THEME       = require('plugins.theme')
 local FILE_TREE   = require('plugins.tree')
 local STATUS_LINE = require('plugins.lualine')
 
-local BASIC       = {
-  { "nvim-lua/plenary.nvim" },
-  {
-    "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup({ default = true })
-    end,
-  },
-}
+local PLUGINS     = tables.table_merge(THEME, CORE, TELESCOPE)
 
-local PLUGINS     = tables.table_merge(BASIC, MENU, TELESCOPE, THEME, FILE_TREE, STATUS_LINE)
+print('PRINTIN PLUGINS', TABLES.dump(PLUGINS))
 
-require("lazy").setup({PLUGINS}, {
+require("lazy").setup({ PLUGINS }, {
   defaults = { lazy = true },
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = true },

@@ -12,21 +12,25 @@ TABLES.table_merge = function(...)
 
   for i = 2, #tables_to_merge do
     local from = tables_to_merge[i]
-    for k, v in pairs(from) do
-      if type(k) == "number" then
-        table.insert(result, v)
-      elseif type(k) == "string" then
-        if type(v) == "table" then
-          result[k] = result[k] or {}
-          result[k] = TABLES.table_merge(result[k], v)
-        else
-          result[k] = v
-        end
-      end
+    for _, tablesFrom in pairs(from) do
+      table.insert(result, tablesFrom)
     end
   end
 
   return result
+end
+
+TABLES.dump = function(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. ' ['..k..'] = ' .. TABLES.dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
 end
 
 return TABLES

@@ -1,6 +1,11 @@
 local NAME = 'nvim-telescope/telescope.nvim'
 
-local DEPENDENCIES = { "nvim-lua/plenary.nvim" }
+local FZF_PLUGIN = {
+  'nvim-telescope/telescope-fzf-native.nvim',
+  build = "make",
+}
+
+local DEPENDENCIES = { { "nvim-lua/plenary.nvim" }, FZF_PLUGIN, { "nvim-lua/popup.nvim" } }
 
 local CONFIG = function()
   local telescope_setup, telescope = pcall(require, "telescope")
@@ -22,7 +27,6 @@ local CONFIG = function()
   telescope.setup {
     defaults = {
       layout_config = {
-        width = 0.75,
         prompt_position = "bottom",
         preview_cutoff = 120,
         horizontal = { mirror = false },
@@ -77,10 +81,6 @@ local CONFIG = function()
   }
 end
 
-local FZF_PLUGIN = {
-  'nvim-telescope/telescope-fzf-native.nvim',
-  build = "make",
-}
 
 local MAPPER_PLUGIN = require('plugins.telescope.mapper')
 
@@ -91,34 +91,4 @@ local TELESCOPE_PLUGIN = {
   config = CONFIG,
 }
 
-
-local function table_merge(...)
-  local tables_to_merge = { ... }
-  assert(#tables_to_merge > 1, "There should be at least two tables to merge them")
-
-  for k, t in ipairs(tables_to_merge) do
-    assert(type(t) == "table", string.format("Expected a table as function parameter %d", k))
-  end
-
-  local result = tables_to_merge[1]
-
-  for i = 2, #tables_to_merge do
-    local from = tables_to_merge[i]
-    for k, v in pairs(from) do
-      if type(k) == "number" then
-        table.insert(result, v)
-      elseif type(k) == "string" then
-        if type(v) == "table" then
-          result[k] = result[k] or {}
-          result[k] = table_merge(result[k], v)
-        else
-          result[k] = v
-        end
-      end
-    end
-  end
-
-  return result
-end
-
-return table_merge(FZF_PLUGIN, TELESCOPE_PLUGIN, MAPPER_PLUGIN)
+return { MAPPER_PLUGIN, TELESCOPE_PLUGIN }

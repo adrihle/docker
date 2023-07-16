@@ -17,10 +17,11 @@ local CONFIG = function()
   })
 end
 
-return
-{
-  NAME,
-  lazy = false,
-  DEPENDENCIES,
-  config = CONFIG,
+return {
+  {
+    NAME,
+    lazy = false,
+    dependencies = DEPENDENCIES,
+    config = CONFIG,
+  },
 }
