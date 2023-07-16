@@ -1,7 +1,10 @@
 local DEFAULT_CATEGORY = 'Undefined'
 local DEFAULT_DESCRIPTION = 'Pending to define'
 
-Mapper = require('nvim-mapper')
+local mapper_ready, Mapper = pcall(require, "nvim-mapper")
+if not mapper_ready then
+  return
+end
 
 local function cloneTable(table)
   local table2 = {}

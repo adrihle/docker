@@ -123,8 +123,8 @@ return {
       "NvimTreeFindFile",
       "NvimTreeFindFileToggle",
     },
-    -- keys = {
-    --   { SHORTCUT, TOGGLE_COMMAND, desc = "NvimTree" },
-    -- },
+    keys = {
+      { SHORTCUT, TOGGLE_COMMAND, desc = "NvimTree" },
+    },
   },
 }

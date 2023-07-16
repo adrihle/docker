@@ -1,2 +1,2 @@
 require('utils.functions.tables')
-require('utils.functions.remap')
+require('utils.functions.mapping')
