@@ -5,7 +5,7 @@ local FZF_PLUGIN = {
   build = "make",
 }
 
-local DEPENDENCIES = { { "nvim-lua/plenary.nvim" }, FZF_PLUGIN, { "nvim-lua/popup.nvim" } }
+local DEPENDENCIES = { { "nvim-lua/plenary.nvim" }, FZF_PLUGIN, { "nvim-lua/popup.nvim" }, { "gregorias/nvim-mapper" } }
 
 local CONFIG = function()
   local telescope_setup, telescope = pcall(require, "telescope")
@@ -81,14 +81,11 @@ local CONFIG = function()
   }
 end
 
-
-local MAPPER_PLUGIN = require('plugins.telescope.mapper')
-
-local TELESCOPE_PLUGIN = {
-  NAME,
-  lazy = false,
-  dependencies = DEPENDENCIES,
-  config = CONFIG,
+return {
+  {
+    NAME,
+    lazy = false,
+    dependencies = DEPENDENCIES,
+    config = CONFIG,
+  }
 }
-
-return { MAPPER_PLUGIN, TELESCOPE_PLUGIN }

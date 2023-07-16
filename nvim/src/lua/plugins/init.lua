@@ -16,17 +16,27 @@ vim.opt.rtp:prepend(lazypath)
 local CORE        = require('plugins.core')
 local MENU        = require('plugins.alpha')
 local TELESCOPE   = require('plugins.telescope')
+local MAPPER      = require('plugins.mapper')
 local THEME       = require('plugins.theme')
 local FILE_TREE   = require('plugins.tree')
 local STATUS_LINE = require('plugins.lualine')
 
-local PLUGINS     = tables.table_merge(
+local FINDER      = tables.table_merge(
+  MAPPER,
+  TELESCOPE
+)
+
+local UI          = tables.table_merge(
   THEME,
   MENU,
-  CORE,
-  TELESCOPE,
   FILE_TREE,
   STATUS_LINE
+)
+
+local PLUGINS     = tables.table_merge(
+  CORE,
+  UI,
+  FINDER
 )
 
 require("lazy").setup({ PLUGINS }, {
