@@ -13,14 +13,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local CORE        = require('plugins.core')
-local FINDER      = require('plugins.finder')
-local UI          = require('plugins.ui')
+local CORE     = require('plugins.core')
+local FINDER   = require('plugins.finder')
+local UI       = require('plugins.ui')
+local PROTOCOL = require('plugins.protocol')
 
-local PLUGINS     = TABLES.table_merge(
+local PLUGINS  = TABLES.table_merge(
   CORE,
   UI,
-  FINDER
+  FINDER,
+  PROTOCOL
 )
 
 require("lazy").setup({ PLUGINS }, {
