@@ -1,4 +1,4 @@
-local NAME = "nvim-tree/nvim-tree.lua"
+local NAME = "nvim-lualine/lualine.nvim"
 
 local DEPENDENCIES = { 'nvim-tree/nvim-web-devicons', opt = false }
 
@@ -48,7 +48,8 @@ end
 return {
   {
     NAME,
-    DEPENDENCIES,
+    lazy = false,
+    dependencies = DEPENDENCIES,
     config = CONFIG,
   },
 }

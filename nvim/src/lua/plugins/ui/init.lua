@@ -11,4 +11,3 @@ return TABLES.table_merge(
   TREE,
   STATUS_LINE
 )
-
