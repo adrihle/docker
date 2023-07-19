@@ -41,6 +41,11 @@ return {
     NAME,
     cmd = "Mason",
     config = CONFIG,
-    dependencies = DEPENDENCIES
+    dependencies = DEPENDENCIES,
+    opts = {
+      registries = { 'lua:mason-registry.index' },
+      PATH = 'append',
+    },
+    build = ':MasonUpdate'
   }
 }

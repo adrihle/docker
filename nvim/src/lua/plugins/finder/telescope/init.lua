@@ -25,13 +25,16 @@ local CONFIG = function()
   telescope.load_extension('fzf')
 
   telescope.setup {
+    pickers = {
+      find_files = { theme = 'dropdown' }
+    },
     defaults = {
-      layout_config = {
-        prompt_position = "bottom",
-        preview_cutoff = 120,
-        horizontal = { mirror = false },
-        vertical = { mirror = false }
-      },
+      -- layout_config = {
+      --   prompt_position = "bottom",
+      --   preview_cutoff = 120,
+      --   horizontal = { mirror = false },
+      --   vertical = { mirror = false }
+      -- },
       find_command = {
         'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
       },
@@ -41,7 +44,7 @@ local CONFIG = function()
       initial_mode = "insert",
       selection_strategy = "reset",
       sorting_strategy = "descending",
-      layout_strategy = "horizontal",
+      -- layout_strategy = "horizontal",
       file_sorter = sorters.get_fuzzy_file,
       file_ignore_patterns = {},
       generic_sorter = sorters.get_generic_fuzzy_sorter,
