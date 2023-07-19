@@ -8,6 +8,7 @@ local DEPENDENCIES = {
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-calc",
   "saadparwaiz1/cmp_luasnip",
+  { "onsails/lspkind-nvim" },
   { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
 }
 
