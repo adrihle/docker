@@ -49,9 +49,29 @@ Roccocode = {
         "lua_ls",
         "tsserver",
         "pyright",
-        "dockerfile",
-        "yaml"
+        "dockerls",
+        "yamlls"
       }
+    },
+    treesitter = {
+      ensure_installed = {
+        "tsx",
+        "typescript",
+        "javascript",
+        "html",
+        "css",
+        "vue",
+        "astro",
+        "svelte",
+        "gitcommit",
+        "graphql",
+        "json",
+        "json5",
+        "lua",
+        "markdown",
+        "prisma",
+        "vim",
+      },
     }
   },
   icons = icons,

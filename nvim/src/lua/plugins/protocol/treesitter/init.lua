@@ -9,24 +9,7 @@ local DEPENDENCIES = {
 
 local CONFIG = function()
   require 'nvim-treesitter.configs'.setup {
-    ensure_installed = {
-      "tsx",
-      "typescript",
-      "javascript",
-      "html",
-      "css",
-      "vue",
-      "astro",
-      "svelte",
-      "gitcommit",
-      "graphql",
-      "json",
-      "json5",
-      "lua",
-      "markdown",
-      "prisma",
-      "vim",
-    },                            -- one of "all", or a list of languages
+    ensure_installed = Roccocode.plugins.treesitter.ensure_installed,
     sync_install = false,         -- install languages synchronously (only applied to `ensure_installed`)
     ignore_install = { "haskell" }, -- list of parsers to ignore installing
     highlight = {

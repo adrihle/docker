@@ -1,2 +1,2 @@
-require('config.config')
+require('config.vim')
 require('config.roccocode')
