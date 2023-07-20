@@ -84,6 +84,7 @@ Roccocode = {
   },
   constants = {
     MAPPING = {
+      LEADER = " ",
       MODE = {
         NORMAL = { 'n' },
         INSERTION = { 'i' },
