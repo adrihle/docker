@@ -8,7 +8,6 @@ local CONFIG = function()
     return
   end
 
-  print('holiwi')
   -- configure autopairs
   autopairs.setup({
     check_ts = true,                    -- enable treesitter

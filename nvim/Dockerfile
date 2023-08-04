@@ -1,6 +1,7 @@
 FROM alpine:latest
-COPY src ~/src
+COPY src /src
 RUN apk add \
+  bash \
   git \
   nodejs \
   npm \
@@ -18,6 +19,5 @@ RUN apk add \
   unzip \
   wget \
   --update
+RUN npm i -g typescript
 ENV PATH=~/.linuxbrew/bin:~/.linuxbrew/sbin:$PATH
-
-

@@ -72,7 +72,13 @@ Roccocode = {
         "prisma",
         "vim",
       },
-    }
+    },
+    formatters = {
+      ensure_installed = {
+        "prettier",
+        "stylua",
+      },
+    },
   },
   icons = icons,
   statusline = {

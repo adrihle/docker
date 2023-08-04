@@ -25,9 +25,6 @@ local CONFIG = function()
   telescope.load_extension('fzf')
 
   telescope.setup {
-    pickers = {
-      find_files = { theme = 'dropdown' }
-    },
     defaults = {
       -- layout_config = {
       --   prompt_position = "bottom",
